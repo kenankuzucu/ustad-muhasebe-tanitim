@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ÜSTAD MUHASEBE · Tam Teşkilat Ön Muhasebe Programı · Kategori: MUHASEBE</title>
-<meta name="description" content="ÜSTAD MUHASEBE · Kenan Kuzucu'nun tam teşkilat ön muhasebe programı: 19 ekran, 13 tema, Word/Excel/PDF çıktı, çevrimdışı çalışır, veriler kendi bilgisayarında. Kategori: MUHASEBE.">
+<title>ÜSTAD MUHASEBE + ÜSTAD KASA · Tam Teşkilat Ön Muhasebe Programları · Kategori: MUHASEBE</title>
+<meta name="description" content="ÜSTAD MUHASEBE ve ÜSTAD KASA · Kenan Kuzucu'nun tam teşkilat ön muhasebe programları: 19 ekran, 13 tema, Word/Excel/PDF çıktı, çevrimdışı çalışır, veriler kendi bilgisayarında. Kategori: MUHASEBE.">
 <meta name="author" content="Kenan Kuzucu">
 <meta name="keywords" content="muhasebe, ön muhasebe, cari takip, kasa, fatura, stok, bütçe, çek senet, python, sqlite, türkçe, üstad">
-<meta property="og:title" content="ÜSTAD MUHASEBE · Kategori: MUHASEBE">
+<meta property="og:title" content="ÜSTAD MUHASEBE + ÜSTAD KASA · Kategori: MUHASEBE">
 <meta property="og:description" content="19 ekran · 13 tema · Word/Excel/PDF · çevrimdışı · veriler kendi bilgisayarında (SQLite).">
 <meta property="og:image" content="ekran/1-genel-bakis.png">
 <style>
@@ -204,9 +204,10 @@ footer b{color:var(--altin)}
     <div class="sikke sag">₺</div>
   </div>
   <h1>ÜSTAD MUHASEBE</h1>
-  <p class="altYazi">Tam Teşkilat Ön Muhasebe Programı · <b>v1.2</b> · PC · çevrimdışı çalışır · veriler kendi bilgisayarında</p>
+  <p class="altYazi">Tam Teşkilat Ön Muhasebe Programları · <b>ÜSTAD MUHASEBE + ÜSTAD KASA</b> · v1.2 · PC · çevrimdışı · veriler kendi bilgisayarında</p>
   <div class="kategori">KATEGORİ · MUHASEBE</div>
   <div class="etiketSatir">
+    <span class="etiket"><b>2</b> program: MUHASEBE + KASA</span>
     <span class="etiket"><b>19</b> ekran</span>
     <span class="etiket"><b>13</b> tema · <b>6</b> renk paleti</span>
     <span class="etiket"><b>4</b> akıllı rapor</span>
@@ -217,6 +218,7 @@ footer b{color:var(--altin)}
   <div class="hizli">
     <a class="btn altin" href="#ekranlar">🖼️ Ekranları Gör</a>
     <a class="btn tur" href="#moduller">🧩 19 Modül</a>
+    <a class="btn" href="#kasa">🏦 USTAD KASA</a>
     <a class="btn" href="#linkler">🔗 Linkler</a>
   </div>
 </header>
@@ -323,6 +325,47 @@ footer b{color:var(--altin)}
 
 <div class="bolum-cizgi"></div>
 
+<section id="kasa" style="--aksan:var(--altin)">
+  <sarmal>
+    <h2>İkiz program · ÜSTAD KASA <span class="rozet ozel">kopya sürüm · port 8092</span></h2>
+    <p class="aciklama">
+      <b>ÜSTAD KASA</b>, ÜSTAD MUHASEBE ile <b>aynı motoru</b> kullanan ikinci programdır: ayrı klasörde, ayrı portta durur ve
+      üstünde <b>şatafat katmanı</b> vardır — aurora zemin, dönen konik logo halkası, cam + neon kartlar, fare hareketiyle
+      <b>3B eğilen</b> kartlar, tıklama dalgası, kaydet düğmesinde konfeti ve parıltı tülü. Şatafat ayrı dosyalarda
+      (<code>satafat.css</code> · <code>satafat.js</code>) durur, çekirdek koda dokunmaz. İki program <b>aynı anda açılabilir</b>.
+    </p>
+    <table class="tablo">
+      <tr><th>Konu</th><th>ÜSTAD MUHASEBE</th><th>ÜSTAD KASA</th></tr>
+      <tr><td>Adres</td><td>127.0.0.1:<b>8091</b></td><td>127.0.0.1:<b>8092</b></td></tr>
+      <tr><td>Görünüm</td><td>Sade, klasik panel</td><td><b>Şatafat katmanı</b> + ayrı <code>satafat</code> teması</td></tr>
+      <tr><td>Modüller</td><td>19 ekran · 13 tema · 6 palet</td><td>19 ekran · 13 tema · 6 palet (aynı)</td></tr>
+      <tr><td>Kasa defteri</td><td>Ayrı SQLite dosyası</td><td>Ayrı SQLite dosyası (birbirine karışmaz)</td></tr>
+      <tr><td>Çevrimdışı rozeti</td><td>—</td><td>Sol altta sabit rozet</td></tr>
+      <tr><td>Yazdırma / PDF</td><td>Word üzerinden PDF</td><td>Panel koduna dokunmadan <b>tarayıcı yazdırması → PDF</b></td></tr>
+      <tr><td>Kaynak kod</td><td><span class="rozet ozel">özel depo</span> ustad-muhasebe</td><td><span class="rozet ozel">özel depo</span> ustad-kasa</td></tr>
+    </table>
+
+    <h3 style="margin:28px 0 12px; color:var(--altin)">ÜSTAD KASA ekranları (8 kare)</h3>
+    <div class="galeri">
+      <figure class="kare" data-buyuk="ekran-kasa/1-satafat.png"><img loading="lazy" src="ekran-kasa/1-satafat.png" alt="Şatafat katmanı"><figcaption><b>1 · Genel Bakış · şatafat katmanı</b>Cam kartlar, neon çizgiler, aurora zemin</figcaption></figure>
+      <figure class="kare" data-buyuk="ekran-kasa/2-perde.png"><img loading="lazy" src="ekran-kasa/2-perde.png" alt="Giriş perdesi"><figcaption><b>2 · Giriş perdesi</b>Abaküs + ₺ amblemli logo, roller altta</figcaption></figure>
+      <figure class="kare" data-buyuk="ekran-kasa/3-pano.png"><img loading="lazy" src="ekran-kasa/3-pano.png" alt="Pano"><figcaption><b>3 · Pano</b>Günlük gelir/gider, net kâr, kasa toplamı</figcaption></figure>
+      <figure class="kare" data-buyuk="ekran-kasa/4-perde.png"><img loading="lazy" src="ekran-kasa/4-perde.png" alt="Giriş perdesi 2"><figcaption><b>4 · Giriş perdesi · 2. görünüm</b>Farklı tema ve palet</figcaption></figure>
+      <figure class="kare" data-buyuk="ekran-kasa/5-pano.png"><img loading="lazy" src="ekran-kasa/5-pano.png" alt="Pano geniş"><figcaption><b>5 · Pano · geniş ekran</b>4K/5K'da ölçeklenen punto ve boşluklar</figcaption></figure>
+      <figure class="kare" data-buyuk="ekran-kasa/6-yazdir.png"><img loading="lazy" src="ekran-kasa/6-yazdir.png" alt="Çevrimdışı rozeti"><figcaption><b>6 · Çevrimdışı rozeti ve yazdırma</b>Sol altta "internet var / yok" rozeti, üstte Word/Excel/PDF</figcaption></figure>
+      <figure class="kare" data-buyuk="ekran-kasa/7-asistan.png"><img loading="lazy" src="ekran-kasa/7-asistan.png" alt="Asistan"><figcaption><b>7 · Muhasebe Asistanı</b>"Asistan internet ister, geri kalan her şey çevrimdışı" uyarısıyla</figcaption></figure>
+      <figure class="kare" data-buyuk="ekran-kasa/8-exe.png"><img loading="lazy" src="ekran-kasa/8-exe.png" alt="Tek dosya exe"><figcaption><b>8 · Tek dosya program</b>USTAD-KASA.exe · kurulum gerektirmez</figcaption></figure>
+    </div>
+    <p class="aciklama" style="margin-top:18px">
+      USTAD KASA'nın kaynak kodu da <b>özel</b> depodadır:
+      <a href="https://github.com/kenankuzucu/ustad-kasa" target="_blank" rel="noopener">github.com/kenankuzucu/ustad-kasa</a>
+      <span class="rozet ozel">özel depo · oturum gerekir</span>
+    </p>
+  </sarmal>
+</section>
+
+<div class="bolum-cizgi"></div>
+
 <section style="--aksan:var(--mor)">
   <sarmal>
     <h2>Nasıl çalışır?</h2>
@@ -371,9 +414,14 @@ footer b{color:var(--altin)}
         <a class="btn kucuk tur" href="https://kenankuzucu.github.io/ustad-muhasebe-tanitim/">Sayfayı Aç</a>
       </div>
       <div class="linkKart">
-        <h3>📦 Kaynak kodu <span class="rozet ozel">özel depo</span></h3>
+        <h3>📦 Kaynak kodu · ÜSTAD MUHASEBE <span class="rozet ozel">özel depo</span></h3>
         <p>Panel, sunucu, rapor motoru ve kurulum betikleri. Görünürlük: özel (yalnız sahibinin oturumunda açılır).</p>
         <a class="btn kucuk" href="https://github.com/kenankuzucu/ustad-muhasebe" target="_blank" rel="noopener">github.com/kenankuzucu/ustad-muhasebe</a>
+      </div>
+      <div class="linkKart">
+        <h3>📦 Kaynak kodu · ÜSTAD KASA <span class="rozet ozel">özel depo</span></h3>
+        <p>Şatafatlı kasa defteri (port 8092) — şatafat katmanı <code>satafat.css</code> + <code>satafat.js</code> buradadır.</p>
+        <a class="btn kucuk" href="https://github.com/kenankuzucu/ustad-kasa" target="_blank" rel="noopener">github.com/kenankuzucu/ustad-kasa</a>
       </div>
       <div class="linkKart">
         <h3>🧾 Uygulama doğrudan açılış</h3>
@@ -387,7 +435,7 @@ footer b{color:var(--altin)}
 </section>
 
 <footer>
-  <p><b>ÜSTAD MUHASEBE</b> · Kategori: MUHASEBE · v1.2</p>
+  <p><b>ÜSTAD MUHASEBE</b> + <b>ÜSTAD KASA</b> · Kategori: MUHASEBE · v1.2</p>
   <p>© 2026 <b>Kenan Kuzucu</b> · ÜSTAD SALON KENAN · Gaziantep · TÜM HAKLARI SAKLIDIR · 5846 sayılı FSEK kapsamında korunur.</p>
   <p style="opacity:.75">Ekran görüntüleri örnek verilerle alınmıştır. Tasarım ve madalyon amblemi Kenan Kuzucu'ya aittir.</p>
 </footer>
