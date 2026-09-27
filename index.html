@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="tr" data-tema="gece">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ÜSTAD MUHASEBE · Tam Teşkilat Ön Muhasebe Programı · Kategori: MUHASEBE</title>
+<meta name="description" content="ÜSTAD MUHASEBE · Kenan Kuzucu'nun tam teşkilat ön muhasebe programı: 19 ekran, 13 tema, Word/Excel/PDF çıktı, çevrimdışı çalışır, veriler kendi bilgisayarında. Kategori: MUHASEBE.">
+<meta name="author" content="Kenan Kuzucu">
+<meta name="keywords" content="muhasebe, ön muhasebe, cari takip, kasa, fatura, stok, bütçe, çek senet, python, sqlite, türkçe, üstad">
+<meta property="og:title" content="ÜSTAD MUHASEBE · Kategori: MUHASEBE">
+<meta property="og:description" content="19 ekran · 13 tema · Word/Excel/PDF · çevrimdışı · veriler kendi bilgisayarında (SQLite).">
+<meta property="og:image" content="ekran/1-genel-bakis.png">
+<style>
+:root{
+  --gece:#05070f; --kart:#0d1322; --kart2:#111a2e; --cizgi:#1e2b47;
+  --altin:#f5c451; --altinKoyu:#a97b12; --turkuaz:#28e0c8; --pembe:#ff5ea8;
+  --mor:#9b7bff; --yesil:#3ee08a; --turuncu:#ff9a3c; --mavi:#4fb8ff;
+  --yazi:#e8eefc; --soluk:#93a3c4;
+  --olcek:1;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--gece); color:var(--yazi);
+  font-family:"Segoe UI",Inter,system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  line-height:1.6; overflow-x:hidden;
+}
+body::before{ /* aurora */
+  content:""; position:fixed; inset:-30%; z-index:-2;
+  background:
+    radial-gradient(38% 32% at 18% 12%, rgba(40,224,200,.16), transparent 60%),
+    radial-gradient(34% 30% at 82% 8%, rgba(255,94,168,.14), transparent 60%),
+    radial-gradient(45% 40% at 50% 105%, rgba(155,123,255,.16), transparent 60%),
+    radial-gradient(30% 26% at 88% 78%, rgba(245,196,81,.10), transparent 60%);
+  animation:aurora 22s ease-in-out infinite alternate; filter:blur(6px);
+}
+@keyframes aurora{ from{transform:translate3d(-2%,-1%,0) scale(1)} to{transform:translate3d(2%,2%,0) scale(1.08)} }
+body::after{ /* izgara */
+  content:""; position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.35;
+  background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+  background-size:52px 52px;
+  mask-image:radial-gradient(circle at 50% 20%,#000 20%,transparent 78%);
+}
+a{color:var(--turkuaz); text-decoration:none}
+a:hover{text-decoration:underline}
+sarmal{display:block; max-width:1180px; margin:0 auto; padding:0 22px}
+
+/* ---------- ÜST ---------- */
+header.ust{
+  position:relative; text-align:center; padding:54px 22px 40px;
+  border-bottom:1px solid var(--cizgi);
+  background:linear-gradient(180deg,rgba(13,19,34,.85),rgba(5,7,15,.2));
+}
+.taç{display:flex; justify-content:center; align-items:center; gap:26px; margin-bottom:16px}
+.sikke{
+  width:64px;height:64px;border-radius:50%; flex:0 0 auto;
+  background:radial-gradient(circle at 35% 30%,#ffe9a8,#f5c451 45%,#a97b12 100%);
+  box-shadow:0 0 26px rgba(245,196,81,.45), inset 0 0 12px rgba(0,0,0,.35);
+  display:grid; place-items:center; font-size:30px; color:#3a2a00; font-weight:800;
+  animation:sallan 5s ease-in-out infinite;
+}
+.sikke.sag{animation-delay:-2.5s}
+@keyframes sallan{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-8px) rotate(4deg)}}
+.amblemKap{position:relative; width:172px;height:172px; flex:0 0 auto}
+.amblemKap::before{
+  content:""; position:absolute; inset:-9px; border-radius:50%;
+  background:conic-gradient(from 0deg,var(--altin),var(--turkuaz),var(--pembe),var(--mor),var(--altin));
+  animation:don 7s linear infinite; filter:blur(1px);
+}
+.amblemKap::after{
+  content:""; position:absolute; inset:-24px; border-radius:50%;
+  border:1px dashed rgba(245,196,81,.45); animation:nabiz 3.4s ease-in-out infinite;
+}
+@keyframes don{to{transform:rotate(360deg)}}
+@keyframes nabiz{0%,100%{transform:scale(1);opacity:.55}50%{transform:scale(1.06);opacity:1}}
+.amblemKap img{
+  position:relative; width:100%; height:100%; object-fit:contain; border-radius:50%;
+  background:#0a0f1c; padding:7px; box-shadow:0 14px 40px rgba(0,0,0,.6);
+}
+h1{
+  font-size:clamp(30px,5.6vw,58px); margin:4px 0 6px; letter-spacing:1px; font-weight:800;
+  color:#fff; text-shadow:0 0 22px rgba(245,196,81,.45),0 3px 0 rgba(0,0,0,.45);
+}
+.altYazi{color:var(--soluk); font-size:clamp(14px,1.6vw,18px); margin:0}
+.etiketSatir{display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin:22px 0 0}
+.etiket{
+  font-size:13px; padding:6px 14px; border-radius:999px; border:1px solid var(--cizgi);
+  background:linear-gradient(180deg,#141d33,#0c1424); color:var(--yazi);
+}
+.etiket b{color:var(--altin)}
+.kategori{
+  display:inline-block; margin-top:18px; padding:10px 22px; border-radius:14px; font-weight:800;
+  letter-spacing:2px; color:#2a1d00;
+  background:linear-gradient(135deg,#ffe9a8,#f5c451 50%,#d9a52c);
+  box-shadow:0 10px 30px rgba(245,196,81,.35);
+}
+.hizli{display:flex; gap:14px; flex-wrap:wrap; justify-content:center; margin-top:26px}
+.btn{
+  display:inline-flex; gap:9px; align-items:center; padding:13px 24px; border-radius:13px; font-weight:700;
+  border:1px solid var(--cizgi); background:linear-gradient(180deg,#16203a,#0d1425); color:var(--yazi);
+  transition:transform .18s, box-shadow .18s, border-color .18s;
+}
+.btn:hover{transform:translateY(-3px); text-decoration:none; border-color:var(--altin); box-shadow:0 12px 30px rgba(245,196,81,.22)}
+.btn.tur{background:linear-gradient(135deg,#28e0c8,#0e9e8f); color:#04211d; border-color:transparent}
+.btn.altin{background:linear-gradient(135deg,#ffe9a8,#f5c451); color:#2a1d00; border-color:transparent}
+.btn.kucuk{font-size:13px; padding:9px 16px}
+
+/* ---------- BÖLÜM ---------- */
+section{padding:56px 0}
+section > sarmal > h2{
+  font-size:clamp(21px,2.8vw,32px); margin:0 0 6px; display:flex; align-items:center; gap:13px;
+}
+section > sarmal > h2::before{
+  content:""; width:8px; height:34px; border-radius:6px; background:var(--aksan,var(--altin));
+  box-shadow:0 0 20px var(--aksan,var(--altin));
+}
+.aciklama{color:var(--soluk); margin:0 0 26px; max-width:940px}
+.bolum-cizgi{height:1px; background:linear-gradient(90deg,transparent,var(--cizgi),transparent)}
+
+.kartlar{display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(255px,1fr))}
+.kart{
+  position:relative; border-radius:16px; padding:20px 20px 18px; overflow:hidden;
+  background:linear-gradient(180deg,var(--kart2),var(--kart)); border:1px solid var(--cizgi);
+  transition:transform .22s, box-shadow .22s, border-color .22s;
+}
+.kart::before{content:""; position:absolute; inset:0 0 auto 0; height:4px; background:var(--aksan,var(--altin))}
+.kart:hover{transform:translateY(-6px); border-color:var(--aksan,var(--altin)); box-shadow:0 18px 42px rgba(0,0,0,.55)}
+.kart h3{margin:8px 0 8px; font-size:17px}
+.kart p{margin:0; color:var(--soluk); font-size:14.5px}
+.sayi{font-size:34px; font-weight:800; color:var(--aksan,var(--altin)); text-shadow:0 0 20px rgba(255,255,255,.14)}
+
+ol.modul{list-style:none; counter-reset:m; padding:0; margin:0; display:grid; gap:10px; grid-template-columns:repeat(auto-fit,minmax(330px,1fr))}
+ol.modul li{
+  counter-increment:m; position:relative; padding:13px 16px 13px 58px; border-radius:13px;
+  background:linear-gradient(180deg,#101828,#0b1120); border:1px solid var(--cizgi); font-size:14.6px;
+}
+ol.modul li::before{
+  content:counter(m,decimal-leading-zero); position:absolute; left:14px; top:13px;
+  font-weight:800; font-size:13px; color:#2a1d00; background:linear-gradient(135deg,#ffe9a8,#f5c451);
+  border-radius:9px; padding:3px 8px; box-shadow:0 4px 14px rgba(245,196,81,.3);
+}
+ol.modul li b{color:var(--turkuaz); display:block; margin-bottom:2px}
+ol.modul li span{color:var(--soluk); font-size:13.3px}
+
+/* ---------- GALERİ ---------- */
+.galeri{display:grid; gap:18px; grid-template-columns:repeat(auto-fit,minmax(360px,1fr))}
+.kare{
+  border-radius:16px; overflow:hidden; cursor:zoom-in; background:#0a0f1c; border:1px solid var(--cizgi);
+  transition:transform .24s, box-shadow .24s, border-color .24s;
+}
+.kare:hover{transform:translateY(-6px) scale(1.008); border-color:var(--turkuaz); box-shadow:0 20px 48px rgba(0,0,0,.6)}
+.kare img{display:block; width:100%; height:auto}
+.kare figcaption{padding:12px 15px; font-size:13.6px; color:var(--soluk); border-top:1px solid var(--cizgi)}
+.kare figcaption b{color:var(--yazi); display:block; font-size:14.6px; margin-bottom:3px}
+.tamGen{grid-column:1/-1}
+
+/* ışık kutusu */
+#kutu{position:fixed; inset:0; background:rgba(2,4,10,.94); display:none; z-index:60; padding:26px; overflow:auto}
+#kutu.acik{display:block}
+#kutu img{max-width:1500px; width:100%; margin:0 auto; display:block; border:1px solid var(--cizgi); border-radius:12px}
+#kutu .kapat{position:fixed; top:16px; right:22px; font-size:30px; color:#fff; cursor:pointer; background:none; border:0}
+#kutu p{text-align:center; color:var(--soluk)}
+
+table.tablo{width:100%; border-collapse:collapse; font-size:14.5px; overflow:hidden; border-radius:13px}
+table.tablo th,table.tablo td{padding:11px 14px; text-align:left; border-bottom:1px solid var(--cizgi)}
+table.tablo th{background:#131c31; color:var(--altin); font-size:13px; letter-spacing:.4px; text-transform:uppercase}
+table.tablo tr:nth-child(even) td{background:#0b1120}
+
+.uyari{
+  border-radius:14px; padding:18px 20px; border:1px solid var(--cizgi);
+  background:linear-gradient(180deg,#171126,#0d1425); border-left:5px solid var(--turuncu);
+}
+.uyari b{color:var(--turuncu)}
+.uyari ul{margin:8px 0 0 18px; padding:0; color:var(--soluk)}
+.uyari li{margin:5px 0}
+
+.linkDizi{display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(330px,1fr))}
+.linkKart{
+  border-radius:15px; padding:18px; border:1px solid var(--cizgi);
+  background:linear-gradient(180deg,#101a2e,#0a1020); transition:transform .2s, border-color .2s;
+}
+.linkKart:hover{transform:translateY(-4px); border-color:var(--altin)}
+.linkKart h3{margin:0 0 6px; font-size:16px}
+.linkKart p{margin:0 0 12px; color:var(--soluk); font-size:13.6px}
+.rozet{font-size:11.5px; padding:3px 9px; border-radius:999px; border:1px solid var(--cizgi); color:var(--soluk); vertical-align:middle}
+.rozet.ozel{border-color:#7b5cff; color:#c3b4ff}
+.rozet.acik{border-color:var(--yesil); color:#9df3c2}
+
+footer{
+  border-top:1px solid var(--cizgi); padding:30px 22px; text-align:center; color:var(--soluk); font-size:13.4px;
+  background:linear-gradient(180deg,transparent,rgba(13,19,34,.7));
+}
+footer b{color:var(--altin)}
+@media(max-width:760px){ .sikke{display:none} .amblemKap{width:130px;height:130px} }
+</style>
+</head>
+<body>
+
+<header class="ust">
+  <div class="taç">
+    <div class="sikke">₺</div>
+    <div class="amblemKap"><img src="amblem.png" alt="ÜSTAD KENAN KUZUCU · NÖBETTEYİZ madalyon amblemi"></div>
+    <div class="sikke sag">₺</div>
+  </div>
+  <h1>ÜSTAD MUHASEBE</h1>
+  <p class="altYazi">Tam Teşkilat Ön Muhasebe Programı · <b>v1.2</b> · PC · çevrimdışı çalışır · veriler kendi bilgisayarında</p>
+  <div class="kategori">KATEGORİ · MUHASEBE</div>
+  <div class="etiketSatir">
+    <span class="etiket"><b>19</b> ekran</span>
+    <span class="etiket"><b>13</b> tema · <b>6</b> renk paleti</span>
+    <span class="etiket"><b>4</b> akıllı rapor</span>
+    <span class="etiket">Word · Excel · PDF çıktı</span>
+    <span class="etiket">Python + SQLite · kurulum yok</span>
+    <span class="etiket">Rol bazlı giriş (yönetici / kasiyer / misafir)</span>
+  </div>
+  <div class="hizli">
+    <a class="btn altin" href="#ekranlar">🖼️ Ekranları Gör</a>
+    <a class="btn tur" href="#moduller">🧩 19 Modül</a>
+    <a class="btn" href="#linkler">🔗 Linkler</a>
+  </div>
+</header>
+
+<section style="--aksan:var(--turkuaz)">
+  <sarmal>
+    <h2>Bu program ne yapar?</h2>
+    <p class="aciklama">
+      ÜSTAD MUHASEBE, bir esnafın/işletmenin günlük ön muhasebesini tek programda toplar: cari takip, kasa ve banka,
+      gelir–gider defterleri, faturalar, stok, personel ve bordro ön izlemesi, çek–senet takibi, bütçe, görevler,
+      müşteri görüşmeleri ve raporlar. Program <b>kendi bilgisayarında</b> çalışır — bulut yok, aylık ücret yok,
+      internet olmadan da açılır. Bütün kayıtlar bilgisayarındaki tek bir SQLite veritabanında durur.
+    </p>
+    <div class="kartlar">
+      <div class="kart" style="--aksan:var(--yesil)">
+        <div class="sayi">0 ₺</div><h3>Aylık ücret yok</h3>
+        <p>Abonelik, bulut, kullanıcı başı ücret yok. Program senin bilgisayarında, veriler senin diskinde.</p>
+      </div>
+      <div class="kart" style="--aksan:var(--mavi)">
+        <div class="sayi">%100</div><h3>Çevrimdışı</h3>
+        <p>İnternet kesilse de çalışır. Asistan ekranını açmadıkça hiçbir veri dışarı gitmez.</p>
+      </div>
+      <div class="kart" style="--aksan:var(--pembe)">
+        <div class="sayi">PBKDF2</div><h3>Şifreler şifreli</h3>
+        <p>Kullanıcı şifreleri 100.000 turlu PBKDF2 + rastgele tuzla saklanır; silme/ayar işleri rol denetiminden geçer.</p>
+      </div>
+      <div class="kart" style="--aksan:var(--altin)">
+        <div class="sayi">pip yok</div><h3>Kurulum istemez</h3>
+        <p>Bütün program Python standart kütüphanesiyle yazıldı; <code>pip install</code> gerekmez.</p>
+      </div>
+    </div>
+  </sarmal>
+</section>
+
+<div class="bolum-cizgi"></div>
+
+<section id="moduller" style="--aksan:var(--altin)">
+  <sarmal>
+    <h2>19 modül · tam liste</h2>
+    <p class="aciklama">Aşağıda programın bütün ekranları <b>numaralı</b> olarak listelenmiştir — toplam <b>19 ekran</b>.</p>
+    <ol class="modul">
+      <li><b>Genel Bakış</b><span>Günlük/aylık gelir, gider, net kâr, kasa toplamı, 12 aylık grafik, kategori halkası, son işlemler, uyarılar</span></li>
+      <li><b>Cari Yönetimi</b><span>Kart listesi + 6 sekme: Kart Bilgileri · Hareketler · Ekstre · Faturalar · Tahsilat/Ödeme · Notlar</span></li>
+      <li><b>Görüşmeler</b><span>Müşteri görüşme kaydı, sonuç ve takip planı; satır başına Düzenle/Sil</span></li>
+      <li><b>Görevler &amp; Hatırlatma</b><span>Vergi, ödeme ve sayım işleri; "Tamamla" düğmesi, geciken işler kırmızı</span></li>
+      <li><b>Harcamalar · Sade Defter</b><span>Kurumsal olmayan günlük gelir/gider; hızlı kayıt, 30 günlük grafik, kategori halkası</span></li>
+      <li><b>Bütçe</b><span>Kategori bazlı aylık bütçe, renk değiştiren harcama çubuğu, aşım uyarısı</span></li>
+      <li><b>Gelirler</b><span>Kurumsal gelir defteri; kayıt aynı zamanda kasa hareketine işlenir</span></li>
+      <li><b>Giderler</b><span>Kurumsal gider defteri; düzenle/sil ve Word/Excel çıktısı</span></li>
+      <li><b>Kasa &amp; Bankalar</b><span>Hesaplar · Hareketler · Gün Sonu sekmeleri</span></li>
+      <li><b>Faturalar</b><span>Kalemli fatura, KDV/iskonto otomatik hesap, ödeme durumu; satış faturası stoktan düşer</span></li>
+      <li><b>Çek &amp; Senet</b><span>Alınan/verilen, vade takvimi, vadesi geçen uyarısı, durum takibi</span></li>
+      <li><b>Tekrarlayan Kayıt &amp; Abonelik</b><span>Kira, maaş ve abonelikler her ay kendiliğinden deftere işlenir</span></li>
+      <li><b>Stok Yönetimi</b><span>Miktar, kritik seviye, stok değeri takibi</span></li>
+      <li><b>Personel &amp; Bordro</b><span>Maaş, SGK ve stopaj ön izlemesi + Puantaj (avans/prim/izin/fazla mesai)</span></li>
+      <li><b>Muhasebe Asistanı</b><span>Kendi defterindeki gerçek sayılarla Türkçe cevap (isteğe bağlı Gemini anahtarı)</span></li>
+      <li><b>Fiş &amp; Fatura Fotoğrafları</b><span>Fotoğraf yükle, sakla, "Deftere İşle" ile sade deftere gider yaz</span></li>
+      <li><b>Raporlar</b><span>10 klasik rapor + 4 akıllı: KDV Özeti · Harcama Anomalisi · Nakit Akışı Tahmini · Yıl Sonu Karnesi</span></li>
+      <li><b>Word / Excel / PDF Çıktıları</b><span>Üretilen belgelerin listesi; indir, yazdır, sil</span></li>
+      <li><b>Ayarlar &amp; Yedek</b><span>Firma · Kullanıcılar &amp; Roller · Ağ &amp; Güvenlik · Yedekleme · Otomasyon · Denetim Kaydı</span></li>
+    </ol>
+  </sarmal>
+</section>
+
+<div class="bolum-cizgi"></div>
+
+<section id="ekranlar" style="--aksan:var(--pembe)">
+  <sarmal>
+    <h2>Gerçek ekran görüntüleri <span class="rozet acik">24 kare</span></h2>
+    <p class="aciklama">
+      Hepsi programın kendi çalışan halinden alındı (örnek verilerle). Büyütmek için üzerine tıkla.
+    </p>
+    <div class="galeri">
+      <figure class="kare tamGen" data-buyuk="ekran/1-genel-bakis.png">
+        <img loading="lazy" src="ekran/1-genel-bakis.png" alt="ÜSTAD MUHASEBE · Genel Bakış">
+        <figcaption><b>1 · Genel Bakış</b>Günlük gelir/gider, net kâr, kasa toplamı, 12 aylık grafik ve kategori halkası tek panoda</figcaption>
+      </figure>
+      <figure class="kare" data-buyuk="ekran/2-kasa-ve-bankalar.png"><img loading="lazy" src="ekran/2-kasa-ve-bankalar.png" alt="Kasa ve Bankalar"><figcaption><b>2 · Kasa &amp; Bankalar</b>Hesaplar, hareketler ve gün sonu</figcaption></figure>
+      <figure class="kare" data-buyuk="ekran/3-cari-ekstre-gunduz.png"><img loading="lazy" src="ekran/3-cari-ekstre-gunduz.png" alt="Cari ekstre"><figcaption><b>3 · Cari Ekstre</b>Müşteri borç/alacak dökümü (gündüz teması)</figcaption></figure>
+      <figure class="kare" data-buyuk="ekran/4-yeni-fatura-altin.png"><img loading="lazy" src="ekran/4-yeni-fatura-altin.png" alt="Yeni fatura"><figcaption><b>4 · Yeni Fatura</b>Kalemli fatura, KDV/iskonto otomatik (altın tema)</figcaption></figure>
+      <figure class="kare" data-buyuk="ekran/5-raporlar.png"><img loading="lazy" src="ekran/5-raporlar.png" alt="Raporlar"><figcaption><b>5 · Raporlar</b>10 klasik rapor + 4 akıllı rapor tek ekranda</figcaption></figure>
+      <figure class="kare" data-buyuk="ekran/6-harcama-sade-defter.png"><img loading="lazy" src="ekran/6-harcama-sade-defter.png" alt="Sade defter"><figcaption><b>6 · Harcamalar · Sade Defter</b>Kişisel günlük gelir/gider, 30 günlük grafik</figcaption></figure>
+      <figure class="kare" data-buyuk="ekran/9-gelir-duzenle-sil.png"><img loading="lazy" src="ekran/9-gelir-duzenle-sil.png" alt="Gelirler"><figcaption><b>7 · Gelirler</b>Her satırda Düzenle + Sil düğmesi</figcaption></figure>
+      <figure class="kare" data-buyuk="ekran/12-cek.png"><img loading="lazy" src="ekran/12-cek.png" alt="Çek ve senet"><figcaption><b>8 · Çek &amp; Senet</b>Vade takvimi ve vadesi geçen uyarısı</figcaption></figure>
+      <figure class="kare" data-buyuk="ekran/13-butce.png"><img loading="lazy" src="ekran/13-butce.png" alt="Bütçe"><figcaption><b>9 · Bütçe</b>Kategori bazlı aylık bütçe ve aşım durumu</figcaption></figure>
+      <figure class="kare" data-buyuk="ekran/20-butce.png"><img loading="lazy" src="ekran/20-butce.png" alt="Bütçe kartları"><figcaption><b>10 · Bütçe kartları</b>Renk değiştiren harcama çubukları</figcaption></figure>
+      <figure class="kare" data-buyuk="ekran/14-rapor-nakit.png"><img loading="lazy" src="ekran/14-rapor-nakit.png" alt="Nakit akışı"><figcaption><b>11 · Akıllı rapor · Nakit Akışı Tahmini</b>Önümüzdeki günlerin nakit projeksiyonu</figcaption></figure>
+      <figure class="kare" data-buyuk="ekran/20-personel.png"><img loading="lazy" src="ekran/20-personel.png" alt="Personel ve bordro"><figcaption><b>12 · Personel &amp; Bordro</b>Maaş/SGK/stopaj ön izlemesi + puantaj</figcaption></figure>
+      <figure class="kare" data-buyuk="ekran/20-tekrar.png"><img loading="lazy" src="ekran/20-tekrar.png" alt="Tekrarlayan kayıt"><figcaption><b>13 · Tekrarlayan Kayıt &amp; Abonelik</b>Kira, maaş, abonelikler otomatik işlenir</figcaption></figure>
+      <figure class="kare" data-buyuk="ekran/20-fis.png"><img loading="lazy" src="ekran/20-fis.png" alt="Fiş fotoğrafları"><figcaption><b>14 · Fiş &amp; Fatura Fotoğrafları</b>Fotoğrafı yükle, kaydet, deftere işle</figcaption></figure>
+      <figure class="kare" data-buyuk="ekran/20-harcama-yeni.png"><img loading="lazy" src="ekran/20-harcama-yeni.png" alt="Yeni harcama"><figcaption><b>15 · Yeni harcama kaydı</b>Hızlı kayıt paneli</figcaption></figure>
+      <figure class="kare" data-buyuk="ekran/20-ai.png"><img loading="lazy" src="ekran/20-ai.png" alt="Muhasebe asistanı"><figcaption><b>16 · Muhasebe Asistanı</b>Kendi defterindeki gerçek sayılarla Türkçe cevap</figcaption></figure>
+      <figure class="kare" data-buyuk="ekran/20-ayarlar-kullanici.png"><img loading="lazy" src="ekran/20-ayarlar-kullanici.png" alt="Kullanıcılar ve roller"><figcaption><b>17 · Ayarlar › Kullanıcılar &amp; Roller</b>Yönetici · kasiyer · misafir yetkileri</figcaption></figure>
+      <figure class="kare" data-buyuk="ekran/11-giris-logo.png"><img loading="lazy" src="ekran/11-giris-logo.png" alt="Giriş perdesi"><figcaption><b>18 · Giriş perdesi</b>Abaküs + ₺ amblemli logo</figcaption></figure>
+      <figure class="kare" data-buyuk="ekran/31-marka.png"><img loading="lazy" src="ekran/31-marka.png" alt="Giriş ekranı"><figcaption><b>19 · Giriş ekranı (madalyon düzeni)</b>Kullanıcı adı + şifre, rol bilgisi altta</figcaption></figure>
+      <figure class="kare" data-buyuk="ekran/7-tema-lavanta.png"><img loading="lazy" src="ekran/7-tema-lavanta.png" alt="Lavanta teması"><figcaption><b>20 · Temalar</b>13 temadan biri: lavanta</figcaption></figure>
+      <figure class="kare" data-buyuk="ekran/8-tema-neon-harcama.png"><img loading="lazy" src="ekran/8-tema-neon-harcama.png" alt="Neon tema"><figcaption><b>21 · Temalar + renk paleti</b>Neon tema, turkuaz/pembe palet</figcaption></figure>
+      <figure class="kare" data-buyuk="ekran/30-marka.png"><img loading="lazy" src="ekran/30-marka.png" alt="Genel bakış geniş"><figcaption><b>22 · Geniş ekran görünümü</b>4K/5K'da punto ve boşluklar ölçeklenir</figcaption></figure>
+      <figure class="kare" data-buyuk="ekran/33-exe.png"><img loading="lazy" src="ekran/33-exe.png" alt="Tek dosya exe"><figcaption><b>23 · Tek dosya program</b>USTAD-MUHASEBE.exe · kurulum gerektirmez</figcaption></figure>
+      <figure class="kare" data-buyuk="ekran/10-v12-test.png"><img loading="lazy" src="ekran/10-v12-test.png" alt="Uçtan uca test"><figcaption><b>24 · Uçtan uca test</b>19 ekran, 6 cari sekmesi, 13 tema sayımı</figcaption></figure>
+    </div>
+  </sarmal>
+</section>
+
+<div class="bolum-cizgi"></div>
+
+<section style="--aksan:var(--mor)">
+  <sarmal>
+    <h2>Nasıl çalışır?</h2>
+    <p class="aciklama">Program Python ile yazılmış küçük bir yerel sunucudur; arayüzü tarayıcıda açılır.
+      Yani masaüstüne simge koyup iki tıkla açarsın, arka planda çalışan siyah pencere programı ayakta tutar.</p>
+    <div class="kartlar">
+      <div class="kart" style="--aksan:var(--turkuaz)"><h3>1 · Aç</h3><p><code>BASLAT.bat</code> dosyasına çift tıkla → tarayıcı <code>127.0.0.1:8091</code> adresinde açılır.</p></div>
+      <div class="kart" style="--aksan:var(--mavi)"><h3>2 · Gir</h3><p>Yönetici, kasiyer veya misafir rolüyle gir. Şifreler sunucuda özetlenmiş olarak saklanır.</p></div>
+      <div class="kart" style="--aksan:var(--yesil)"><h3>3 · Kaydet</h3><p>Cari, kasa, fatura, stok, personel… hepsi aynı deftere işlenir; kasa ile defter birbirini tutar.</p></div>
+      <div class="kart" style="--aksan:var(--altin)"><h3>4 · Çıktı al</h3><p>Word, Excel ve PDF çıktıları; mali müşavir için CSV + KDV özeti tek ZIP paketinde.</p></div>
+    </div>
+    <p class="aciklama" style="margin-top:22px">Telefondan girmek istersen aynı WiFi ağındaki telefonun tarayıcısından bilgisayarın IP adresine bağlanırsın
+      (<code>AG-AC.bat</code>). Yerel ağ modu varsayılan olarak kapalıdır; trafik şifresiz (HTTP) olduğu için yalnız güvendiğin ağda açılır.</p>
+  </sarmal>
+</section>
+
+<div class="bolum-cizgi"></div>
+
+<section style="--aksan:var(--turuncu)">
+  <sarmal>
+    <h2>Dürüst sınırlar</h2>
+    <div class="uyari">
+      <b>Bu program bir ÖN muhasebe programıdır.</b> Beyanname yerine geçmez, e-Fatura / e-Arşiv entegrasyonu yoktur.
+      <ul>
+        <li><b>OCR kapalı:</b> Fiş fotoğrafındaki tutarı program okuyamaz — tutarı sen yazarsın. (Tesseract kurulursa otomatik kullanılır.)</li>
+        <li><b>PDF</b> çıktısı bilgisayarda Word kurulu olmasını gerektirir (Word açılıp kapanır, 5-15 saniye). Word yoksa Word/Excel çıktısı çalışır, PDF üretilmez.</li>
+        <li><b>Asistan</b> yalnızca kendi API anahtarını girersen çalışır; anahtar yoksa program tam olarak çalışır.</li>
+        <li><b>Yerel ağ modu HTTP'dir</b> (şifresiz) — dışarıdan erişim için VPN kullanılmalıdır.</li>
+        <li><b>Android (APK) sürümü yoktur:</b> bu bir PC programıdır (tarayıcı arayüzlü).</li>
+      </ul>
+    </div>
+  </sarmal>
+</section>
+
+<div class="bolum-cizgi"></div>
+
+<section id="linkler" style="--aksan:var(--altin)">
+  <sarmal>
+    <h2>Linkler</h2>
+    <p class="aciklama">Bu sayfa <b>herkese açıktır</b>. Programın kaynak kodu ise ayrı ve <b>özel</b> bir depoda durur
+      (telif koruması) — o deponun linki yalnız sahibinin oturumuyla açılır.</p>
+    <div class="linkDizi">
+      <div class="linkKart">
+        <h3>🌐 Bu tanıtım sayfası <span class="rozet acik">herkese açık</span></h3>
+        <p>GitHub Pages üzerinde yayınlanır; telefondan ve bilgisayardan açılır.</p>
+        <a class="btn kucuk tur" href="https://kenankuzucu.github.io/ustad-muhasebe-tanitim/">Sayfayı Aç</a>
+      </div>
+      <div class="linkKart">
+        <h3>📦 Kaynak kodu <span class="rozet ozel">özel depo</span></h3>
+        <p>Panel, sunucu, rapor motoru ve kurulum betikleri. Görünürlük: özel (yalnız sahibinin oturumunda açılır).</p>
+        <a class="btn kucuk" href="https://github.com/kenankuzucu/ustad-muhasebe" target="_blank" rel="noopener">github.com/kenankuzucu/ustad-muhasebe</a>
+      </div>
+      <div class="linkKart">
+        <h3>🧾 Uygulama doğrudan açılış</h3>
+        <p>Program PC'de <code>BASLAT.bat</code> ile açılır ve <code>127.0.0.1:8091</code> adresini dinler — bu adres yalnız o bilgisayarda çalışır.</p>
+        <a class="btn kucuk" href="#ekranlar">Ekranları gör</a>
+      </div>
+    </div>
+    <p class="aciklama" style="margin-top:20px">Diğer projeler ve indirme merkezi:
+      <a href="https://kenankuzucu.github.io/ustad-apk-indir/" target="_blank" rel="noopener">kenankuzucu.github.io/ustad-apk-indir</a></p>
+  </sarmal>
+</section>
+
+<footer>
+  <p><b>ÜSTAD MUHASEBE</b> · Kategori: MUHASEBE · v1.2</p>
+  <p>© 2026 <b>Kenan Kuzucu</b> · ÜSTAD SALON KENAN · Gaziantep · TÜM HAKLARI SAKLIDIR · 5846 sayılı FSEK kapsamında korunur.</p>
+  <p style="opacity:.75">Ekran görüntüleri örnek verilerle alınmıştır. Tasarım ve madalyon amblemi Kenan Kuzucu'ya aittir.</p>
+</footer>
+
+<div id="kutu">
+  <button class="kapat" aria-label="Kapat">✕</button>
+  <img src="" alt="Büyütülmüş ekran görüntüsü">
+  <p id="kutuYazi"></p>
+</div>
+
+<script>
+// ── ışık kutusu
+const kutu = document.getElementById('kutu');
+const kutuImg = kutu.querySelector('img');
+const kutuYazi = document.getElementById('kutuYazi');
+document.querySelectorAll('.kare').forEach(function(k){
+  k.addEventListener('click', function(){
+    kutuImg.src = k.dataset.buyuk;
+    kutuYazi.textContent = k.querySelector('figcaption').innerText.replace(/\n/g, ' · ');
+    kutu.classList.add('acik');
+  });
+});
+kutu.addEventListener('click', function(e){ if (e.target === kutu || e.target.classList.contains('kapat')) kutu.classList.remove('acik'); });
+document.addEventListener('keydown', function(e){ if (e.key === 'Escape') kutu.classList.remove('acik'); });
+
+// ── 3B eğilme (kart ve kareler)
+document.querySelectorAll('.kart, .kare, .linkKart').forEach(function(el){
+  el.addEventListener('mousemove', function(e){
+    const r = el.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - .5;
+    const y = (e.clientY - r.top) / r.height - .5;
+    el.style.transform = 'perspective(900px) rotateY(' + (x * 7).toFixed(2) + 'deg) rotateX(' + (-y * 7).toFixed(2) + 'deg) translateY(-5px)';
+  });
+  el.addEventListener('mouseleave', function(){ el.style.transform = ''; });
+});
+
+// ── sayaçlar
+const sayaclar = document.querySelectorAll('.sayi');
+const gozcu = new IntersectionObserver(function(girisler){
+  girisler.forEach(function(g){
+    if (!g.isIntersecting) return;
+    const el = g.target, metin = el.textContent.trim();
+    const sayi = parseFloat(metin.replace(/[^0-9.]/g, ''));
+    if (isNaN(sayi)) { gozcu.unobserve(el); return; }
+    const son = metin.replace(/[0-9.]+/, '');
+    let i = 0, adim = sayi / 34;
+    const t = setInterval(function(){
+      i++;
+      el.textContent = (adim * i).toFixed(sayi % 1 ? 1 : 0) + son;
+      if (i >= 34) { clearInterval(t); el.textContent = metin; }
+    }, 18);
+    gozcu.unobserve(el);
+  });
+}, {threshold:.4});
+sayaclar.forEach(function(s){ gozcu.observe(s); });
+</script>
+</body>
+</html>
